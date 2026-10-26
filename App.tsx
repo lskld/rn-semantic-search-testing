@@ -23,7 +23,7 @@ const RootStack = createNativeStackNavigator({
     AdDetails: {
       screen: AdDetailsScreen,
       options: {
-        title: "Lising details",
+        title: "Listing details",
         headerTintColor: "white",
         headerStyle: {
           backgroundColor: "#202020"
