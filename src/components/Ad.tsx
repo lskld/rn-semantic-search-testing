@@ -37,13 +37,14 @@ export default function Ad({
             <View>
                 <Text style={{ fontSize: 18, fontWeight: 600 }}>{title}</Text>
                 <Text>{price} SEK</Text>
+
+                <Pressable
+                    style={styles.expandBtn}
+                    onPress={() => setExpanded(!expanded)}>
+                    <Text style={{ color: "white", textAlign: "center" }}>Expand</Text>
+                </Pressable>
             </View>
-            
-            <Pressable
-                style={styles.expandBtn}
-                onPress={() => setExpanded(!expanded)}>
-                <Text style={{ color: "white", textAlign: "center" }}>Expand</Text>
-            </Pressable>
+
             {expanded && (
                 <View>
                     <Text style={{ marginBottom: 5 }}>{description}</Text>
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
         paddingBlock: 2,
         paddingHorizontal: 10,
-        borderRadius: 10
-    }
+        borderRadius: 10,
+        marginTop: 5
+    },
 })
