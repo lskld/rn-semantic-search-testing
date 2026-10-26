@@ -1,17 +1,20 @@
 import { StyleSheet, View } from "react-native";
 import SearchBar from "./SearchBar";
 import SearchButton from "./SearchButton";
+import { useState } from "react";
 
-export default function Search({ text, setText }: {
-    text: string,
-    setText: (value: string) => void,
+export default function Search({ setText }: {
+    setText: (value: string) => void
 }) {
+    const [inputText, setInputText] = useState("")
+
     return (
         <View style={styles.container}>
             <SearchBar
-                text={text}
-                setText={setText}/>
-            <SearchButton />
+                text={inputText}
+                setText={setInputText}/>
+            <SearchButton
+                onPress={() => setText(inputText)}/>
         </View>
     )
 }

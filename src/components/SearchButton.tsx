@@ -1,8 +1,12 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export default function SearchButton() {
+export default function SearchButton({ onPress }: {
+    onPress: () => void
+}) {
     return (
-        <Pressable style={styles.pressable}>
+        <Pressable
+            onPress={onPress}
+            style={styles.pressable}>
             <Text>🔍</Text>
         </Pressable>
     )

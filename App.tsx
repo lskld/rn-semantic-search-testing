@@ -23,7 +23,6 @@ function AppContent() {
   return (
     <View style={styles.container}>
       <Search
-        text={text}
         setText={setText}/>
       <AdList
         searchText={text} />

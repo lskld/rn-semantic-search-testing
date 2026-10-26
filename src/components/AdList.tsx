@@ -5,9 +5,16 @@ import Ad from "./Ad";
 export default function AdList({ searchText }: {
     searchText: string,
 }) {
+    const filteredAds = carAds.filter(ad =>
+        ad.title.toLowerCase().includes(searchText.toLowerCase()) ||
+        ad.make.toLowerCase().includes(searchText.toLowerCase()) ||
+        ad.model.toLowerCase().includes(searchText.toLowerCase()) ||
+        ad.description.toLowerCase().includes(searchText.toLowerCase())
+    );
+
     return (
         <FlatList
-            data={carAds}
+            data={filteredAds}
             renderItem={({ item }) => (
                 <Ad 
                     id={item.id}
