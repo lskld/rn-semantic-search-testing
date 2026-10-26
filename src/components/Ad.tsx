@@ -34,28 +34,27 @@ export default function Ad({
 
     return (
         <View style={[styles.container, { backgroundColor: bgColor }]}>
-            <View style={styles.header}>
+            <View>
                 <Text style={{ fontSize: 18, fontWeight: 600 }}>{title}</Text>
                 <Text>{price} SEK</Text>
             </View>
-            <View style={styles.description}>
-                <Text>{description}</Text>
-            </View>
+            
             <Pressable
                 style={styles.expandBtn}
                 onPress={() => setExpanded(!expanded)}>
                 <Text style={{ color: "white", textAlign: "center" }}>Expand</Text>
             </Pressable>
             {expanded && (
-                <View style={styles.stats}>
-                <Text style={{ fontWeight: 600 }}>Information:</Text>
-                <Text>Manufacturer: {make}</Text>
-                <Text>Model: {model}</Text>
-                <Text>Model year: {year}</Text>
-                <Text>Mileage (km): {mileage}</Text>
-                <Text>Gearbox: {gearbox}</Text>
-                <Text>Fuel: {fueltype}</Text>
-            </View>
+                <View>
+                    <Text style={{ marginBottom: 5 }}>{description}</Text>
+                    <Text style={{ fontWeight: 600 }}>Additional information:</Text>
+                    <Text>Manufacturer: {make}</Text>
+                    <Text>Model: {model}</Text>
+                    <Text>Model year: {year}</Text>
+                    <Text>Mileage (km): {mileage}</Text>
+                    <Text>Gearbox: {gearbox}</Text>
+                    <Text>Fuel: {fueltype}</Text>
+                </View>
             )}
         </View>
     )
@@ -63,18 +62,10 @@ export default function Ad({
 
 const styles = StyleSheet.create({
     container: {
-        width: "75%",
-        padding: 7.5,
-        gap: 10
-    },
-    header: {
-        
-    },
-    description: {
-
-    },
-    stats: {
-
+        minWidth: "100%",
+        padding: 10,
+        gap: 10,
+        marginBottom: 10
     },
     expandBtn: {
         backgroundColor: "blue",

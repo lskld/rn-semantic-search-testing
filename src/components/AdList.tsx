@@ -21,6 +21,6 @@ export default function AdList() {
                 />
             )}
             keyExtractor={(item) => item.id.toString()}
-        />
+            />
     )
 }
