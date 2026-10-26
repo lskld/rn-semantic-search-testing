@@ -4,7 +4,7 @@ import {
 } from 'react-native-safe-area-context';
 import AdList from './src/components/AdList';
 import Search from './src/components/Search';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -18,15 +18,21 @@ function App() {
 }
 
 function AppContent() {
-  const [text, setText] = useState("")
+  const [inputText, setInputText] = useState("")
+  const [searchText, setSearchText] = useState("")
+
+  useEffect(() => {
+    const timer = setTimeout(() => setSearchText(inputText), 300);
+    return () => clearTimeout(timer)
+  }, [inputText])
 
   return (
     <View style={styles.container}>
       <Search
-        text={text}
-        setText={setText}/>
+        text={inputText}
+        setText={setInputText}/>
       <AdList
-        searchText={text} />
+        searchText={searchText} />
     </View>
   );
 }
