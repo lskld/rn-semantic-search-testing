@@ -12,6 +12,7 @@ export default function Search({ text, setText }: {
                 value={text}
                 onChangeText={setText}
                 placeholder="Search..."
+                placeholderTextColor="gray"
             />
         </View>
     )
@@ -20,8 +21,7 @@ export default function Search({ text, setText }: {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        marginTop: 75,
-        margin: 12,
+        marginBlock: 12,
         gap: 5,
         justifyContent: "center",
     },
@@ -29,8 +29,9 @@ const styles = StyleSheet.create({
         height: 40,
         borderWidth: 1,
         padding: 10,
-        backgroundColor: "black",
-        color: "white",
-        width: "100%"
+        backgroundColor: "white",
+        color: "black",
+        width: "90%",
+        borderRadius: 20
     }
 })

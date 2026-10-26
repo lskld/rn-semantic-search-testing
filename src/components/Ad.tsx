@@ -62,14 +62,17 @@ export default function Ad({
 
 const styles = StyleSheet.create({
     container: {
-        minWidth: "100%",
+        minWidth: "90%",
+        maxWidth: "90%",
         padding: 10,
         gap: 10,
         marginBottom: 10
     },
     expandBtn: {
         backgroundColor: "blue",
-        width: "25%",
+        alignSelf: "flex-start",
+        paddingBlock: 2,
+        paddingHorizontal: 10,
         borderRadius: 10
     }
 })

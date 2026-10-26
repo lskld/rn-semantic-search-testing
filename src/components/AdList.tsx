@@ -30,6 +30,7 @@ export default function AdList({ searchText }: {
                 />
             )}
             keyExtractor={(item) => item.id.toString()}
+            contentContainerStyle={{ alignItems: "center" }}
             />
     )
 }

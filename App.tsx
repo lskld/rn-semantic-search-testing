@@ -4,6 +4,25 @@ import {
 } from 'react-native-safe-area-context';
 
 import HomeScreen from './src/components/HomeScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStaticNavigation } from '@react-navigation/native';
+
+const RootStack = createNativeStackNavigator({
+  screens: {
+    Home: {
+      screen: HomeScreen,
+      options: {
+        title: "Car Listings",
+        headerTintColor: "white",
+        headerStyle: {
+          backgroundColor: "#202020"
+        }
+      }
+    }
+  }
+})
+
+const Navigation = createStaticNavigation(RootStack)
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -11,7 +30,7 @@ function App() {
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <HomeScreen />
+      <Navigation />
     </SafeAreaProvider>
   );
 }
