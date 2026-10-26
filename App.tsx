@@ -6,6 +6,7 @@ import {
 import HomeScreen from './src/components/HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStaticNavigation } from '@react-navigation/native';
+import AdDetailsScreen from './src/components/AdDetailsScreen';
 
 const RootStack = createNativeStackNavigator({
   screens: {
@@ -18,6 +19,9 @@ const RootStack = createNativeStackNavigator({
           backgroundColor: "#202020"
         }
       }
+    },
+    AdDetails: {
+      screen: AdDetailsScreen,
     }
   }
 })

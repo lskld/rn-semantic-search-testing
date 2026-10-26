@@ -1,3 +1,4 @@
+import { useNavigation, type NavigationProp } from "@react-navigation/native";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -14,7 +15,12 @@ type AdProps = {
     fueltype: string;
 }
 
+type AdNavigationParamList = {
+    AdDetails: { id: number };
+};
+
 export default function Ad({
+    id,
     title,
     price,
     description,
@@ -30,34 +36,36 @@ export default function Ad({
         const colors = ["#fff", "#f0f8ff", "#fff0f5", "#f0fff0", "#fffaf0"];
         return colors[Math.floor(Math.random() * colors.length)];
     });
-
+    const navigation = useNavigation<NavigationProp<AdNavigationParamList>>();
 
     return (
-        <View style={[styles.container, { backgroundColor: bgColor }]}>
-            <View>
-                <Text style={{ fontSize: 18, fontWeight: 600 }}>{title}</Text>
-                <Text>{price} SEK</Text>
-
-                <Pressable
-                    style={styles.expandBtn}
-                    onPress={() => setExpanded(!expanded)}>
-                    <Text style={{ color: "white", textAlign: "center" }}>Expand</Text>
-                </Pressable>
-            </View>
-
-            {expanded && (
+        <Pressable
+            onPress={() => navigation.navigate('AdDetails', { id: id })}
+            style={[styles.container, { backgroundColor: bgColor }]}>
                 <View>
-                    <Text style={{ marginBottom: 5 }}>{description}</Text>
-                    <Text style={{ fontWeight: 600 }}>Additional information:</Text>
-                    <Text>Manufacturer: {make}</Text>
-                    <Text>Model: {model}</Text>
-                    <Text>Model year: {year}</Text>
-                    <Text>Mileage (km): {mileage}</Text>
-                    <Text>Gearbox: {gearbox}</Text>
-                    <Text>Fuel: {fueltype}</Text>
+                    <Text style={{ fontSize: 18, fontWeight: 600 }}>{title}</Text>
+                    <Text>{price} SEK</Text>
+
+                    <Pressable
+                        style={styles.expandBtn}
+                        onPress={() => setExpanded(!expanded)}>
+                        <Text style={{ color: "white", textAlign: "center" }}>Expand</Text>
+                    </Pressable>
                 </View>
-            )}
-        </View>
+
+                {expanded && (
+                    <View>
+                        <Text style={{ marginBottom: 5 }}>{description}</Text>
+                        <Text style={{ fontWeight: 600 }}>Additional information:</Text>
+                        <Text>Manufacturer: {make}</Text>
+                        <Text>Model: {model}</Text>
+                        <Text>Model year: {year}</Text>
+                        <Text>Mileage (km): {mileage}</Text>
+                        <Text>Gearbox: {gearbox}</Text>
+                        <Text>Fuel: {fueltype}</Text>
+                    </View>
+                )}
+            </Pressable>
     )
 }
 
