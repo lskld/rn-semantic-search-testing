@@ -2,7 +2,9 @@ import { FlatList } from "react-native";
 import carAds from "../data/car_ads.json"
 import Ad from "./Ad";
 
-export default function AdList() {
+export default function AdList({ searchText }: {
+    searchText: string,
+}) {
     return (
         <FlatList
             data={carAds}
