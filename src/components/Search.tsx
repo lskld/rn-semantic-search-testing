@@ -1,20 +1,18 @@
-import { StyleSheet, View } from "react-native";
-import SearchBar from "./SearchBar";
-import SearchButton from "./SearchButton";
-import { useState } from "react";
+import { StyleSheet, TextInput, View } from "react-native";
 
-export default function Search({ setText }: {
+export default function Search({ text, setText }: {
+    text: string,
     setText: (value: string) => void
 }) {
-    const [inputText, setInputText] = useState("")
 
     return (
         <View style={styles.container}>
-            <SearchBar
-                text={inputText}
-                setText={setInputText}/>
-            <SearchButton
-                onPress={() => setText(inputText)}/>
+            <TextInput
+                style={styles.input}
+                value={text}
+                onChangeText={setText}
+                placeholder="Search..."
+            />
         </View>
     )
 }
@@ -26,5 +24,13 @@ const styles = StyleSheet.create({
         margin: 12,
         gap: 5,
         justifyContent: "center",
+    },
+    input: {
+        height: 40,
+        borderWidth: 1,
+        padding: 10,
+        backgroundColor: "black",
+        color: "white",
+        width: "100%"
     }
 })
