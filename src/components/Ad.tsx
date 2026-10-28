@@ -2,10 +2,7 @@ import { useNavigation, type NavigationProp } from "@react-navigation/native";
 import { memo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { CarAd } from "../lib/filterAds";
-
-type AdNavigationParamList = {
-    AdDetails: { id: number };
-};
+import { RootStackParamList } from "../lib/navigation";
 
 function Ad({
     ad
@@ -13,7 +10,7 @@ function Ad({
     const [expanded, setExpanded] = useState(false);
     const CARD_COLORS = ["#fff", "#f0f8ff", "#fff0f5", "#f0fff0", "#fffaf0"];
     const bgColor = CARD_COLORS[ad.id % CARD_COLORS.length];
-    const navigation = useNavigation<NavigationProp<AdNavigationParamList>>();
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     return (
         <Pressable

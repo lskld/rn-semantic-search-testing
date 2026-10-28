@@ -7,27 +7,26 @@ import HomeScreen from './src/components/HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStaticNavigation } from '@react-navigation/native';
 import AdDetailsScreen from './src/components/AdDetailsScreen';
+import { RootStackParamList } from './src/lib/navigation';
 
-const RootStack = createNativeStackNavigator({
+const RootStack = createNativeStackNavigator<RootStackParamList>({
+  screenOptions: {
+    headerTintColor: "white",
+        headerStyle: {
+          backgroundColor: "#202020"
+        }
+  },
   screens: {
     Home: {
       screen: HomeScreen,
       options: {
         title: "Car Listings",
-        headerTintColor: "white",
-        headerStyle: {
-          backgroundColor: "#202020"
-        }
       }
     },
     AdDetails: {
       screen: AdDetailsScreen,
       options: {
         title: "Listing details",
-        headerTintColor: "white",
-        headerStyle: {
-          backgroundColor: "#202020"
-        }
       }
     }
   }

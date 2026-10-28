@@ -1,17 +1,30 @@
 import { StyleSheet, Text, View } from "react-native";
 import carAds from "../data/car_ads.json"
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../lib/navigation";
 
-export default function AdDetailsScreen({ route, navigation }: {
-    route: { params: { id: number } }
-    navigation: { goBack: () => void }
-}) {
+type AdDetailsProps = NativeStackScreenProps<RootStackParamList, "AdDetails">
+
+export default function AdDetailsScreen({ route }: AdDetailsProps) {
     const { id } = route.params
     const ad = carAds.find(a => a.id === id)
 
     if (!ad) {
-        navigation.goBack()
-        return null
+        return (
+            <View style={styles.container}>
+                <Text>The ad was not found</Text>
+            </View>
+        )
     }
+
+    const specs: [string, string][] = [
+        ["Manufacturer", ad.make],
+        ["Model", ad.model],
+        ["Model year", ad.year],
+        ["Mileage (km)", ad.mileage],
+        ["Gearbox", ad.gearbox],
+        ["Fuel", ad.fueltype],
+    ]
 
     return (
         <View style={styles.container}>
@@ -21,12 +34,9 @@ export default function AdDetailsScreen({ route, navigation }: {
                 <Text style={{ fontWeight: 600, fontSize: 15, marginTop: 30 }}>Sellers description:</Text>
                 <Text>{ad.description}</Text>
                 <Text style={{ fontWeight: 600, fontSize: 15, marginTop: 30 }}>Vehicle Specifications:</Text>
-                <Text>Manufacturer: {ad.make}</Text>
-                <Text>Model: {ad.model}</Text>
-                <Text>Model year: {ad.year}</Text>
-                <Text>Mileage (km): {ad.mileage}</Text>
-                <Text>Gearbox: {ad.gearbox}</Text>
-                <Text>Fuel: {ad.fueltype}</Text>
+                {specs.map(([label, value]) => (
+                    <Text key={label}>{label}: {value}</Text>
+                ))}
             </View>
         </View>
     )
