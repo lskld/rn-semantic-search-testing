@@ -10,9 +10,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@mistralai/mistralai": "^3.4.0",
     "@react-native/new-app-screen": "0.88.0",
     "@react-navigation/native": "^7.5.1",
     "@react-navigation/native-stack": "^7.21.0",
+    "dotenv": "^18.0.9",
     "react": "19.3.0",
     "react-native": "0.88.0",
     "react-native-safe-area-context": "^5.10.1",
