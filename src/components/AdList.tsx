@@ -1,16 +1,12 @@
 import { FlatList } from "react-native";
 import carAds from "../data/car_ads.json"
 import Ad from "./Ad";
+import { filterAds } from "../lib/filterAds";
 
 export default function AdList({ searchText }: {
     searchText: string,
 }) {
-    const filteredAds = carAds.filter(ad =>
-        ad.title.toLowerCase().includes(searchText.toLowerCase()) ||
-        ad.make.toLowerCase().includes(searchText.toLowerCase()) ||
-        ad.model.toLowerCase().includes(searchText.toLowerCase()) ||
-        ad.description.toLowerCase().includes(searchText.toLowerCase())
-    );
+    const filteredAds = filterAds(carAds, searchText)
 
     return (
         <FlatList
