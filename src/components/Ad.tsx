@@ -1,5 +1,5 @@
 import { useNavigation, type NavigationProp } from "@react-navigation/native";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { CarAd } from "../lib/filterAds";
 
@@ -7,7 +7,7 @@ type AdNavigationParamList = {
     AdDetails: { id: number };
 };
 
-export default function Ad({
+function Ad({
     ad
 }: { ad: CarAd }) {
     const [expanded, setExpanded] = useState(false);
@@ -47,6 +47,8 @@ export default function Ad({
             </Pressable>
     )
 }
+
+export default memo(Ad)
 
 const styles = StyleSheet.create({
     container: {
