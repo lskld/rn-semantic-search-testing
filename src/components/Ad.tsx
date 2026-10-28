@@ -11,10 +11,8 @@ function Ad({
     ad
 }: { ad: CarAd }) {
     const [expanded, setExpanded] = useState(false);
-    const [bgColor] = useState(() => {
-        const colors = ["#fff", "#f0f8ff", "#fff0f5", "#f0fff0", "#fffaf0"];
-        return colors[Math.floor(Math.random() * colors.length)];
-    });
+    const CARD_COLORS = ["#fff", "#f0f8ff", "#fff0f5", "#f0fff0", "#fffaf0"];
+    const bgColor = CARD_COLORS[ad.id % CARD_COLORS.length];
     const navigation = useNavigation<NavigationProp<AdNavigationParamList>>();
 
     return (
