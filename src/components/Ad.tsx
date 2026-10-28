@@ -1,36 +1,15 @@
 import { useNavigation, type NavigationProp } from "@react-navigation/native";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-
-type AdProps = {
-    id: number;
-    title: string;
-    price: string;
-    description: string;
-    make: string;
-    model: string;
-    year: string;
-    mileage: string;
-    gearbox: string;
-    fueltype: string;
-}
+import { CarAd } from "../lib/filterAds";
 
 type AdNavigationParamList = {
     AdDetails: { id: number };
 };
 
 export default function Ad({
-    id,
-    title,
-    price,
-    description,
-    make,
-    model,
-    year,
-    mileage,
-    gearbox,
-    fueltype
-}: AdProps) {
+    ad
+}: { ad: CarAd }) {
     const [expanded, setExpanded] = useState(false);
     const [bgColor] = useState(() => {
         const colors = ["#fff", "#f0f8ff", "#fff0f5", "#f0fff0", "#fffaf0"];
@@ -40,11 +19,11 @@ export default function Ad({
 
     return (
         <Pressable
-            onPress={() => navigation.navigate('AdDetails', { id: id })}
+            onPress={() => navigation.navigate('AdDetails', { id: ad.id })}
             style={[styles.container, { backgroundColor: bgColor }]}>
                 <View>
-                    <Text style={{ fontSize: 18, fontWeight: 600 }}>{title}</Text>
-                    <Text>{price} SEK</Text>
+                    <Text style={{ fontSize: 18, fontWeight: 600 }}>{ad.title}</Text>
+                    <Text>{ad.price} SEK</Text>
 
                     <Pressable
                         style={styles.expandBtn}
@@ -55,14 +34,14 @@ export default function Ad({
 
                 {expanded && (
                     <View>
-                        <Text style={{ marginBottom: 5 }}>{description}</Text>
+                        <Text style={{ marginBottom: 5 }}>{ad.description}</Text>
                         <Text style={{ fontWeight: 600 }}>Additional information:</Text>
-                        <Text>Manufacturer: {make}</Text>
-                        <Text>Model: {model}</Text>
-                        <Text>Model year: {year}</Text>
-                        <Text>Mileage (km): {mileage}</Text>
-                        <Text>Gearbox: {gearbox}</Text>
-                        <Text>Fuel: {fueltype}</Text>
+                        <Text>Manufacturer: {ad.make}</Text>
+                        <Text>Model: {ad.model}</Text>
+                        <Text>Model year: {ad.year}</Text>
+                        <Text>Mileage (km): {ad.mileage}</Text>
+                        <Text>Gearbox: {ad.gearbox}</Text>
+                        <Text>Fuel: {ad.fueltype}</Text>
                     </View>
                 )}
             </Pressable>
