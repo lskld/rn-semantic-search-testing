@@ -1,17 +1,11 @@
 import { FlatList } from "react-native";
-import carAds from "../data/car_ads.json"
 import Ad from "./Ad";
-import { filterAds } from "../lib/filterAds";
-import { useMemo } from "react";
+import { CarAd } from "../lib/filterAds";
 
-export default function AdList({ searchText }: {
-    searchText: string,
-}) {
-    const filteredAds = useMemo(() => filterAds(carAds, searchText), [searchText])
-
+export default function AdList({ ads }: { ads: CarAd[] }) {
     return (
         <FlatList
-            data={filteredAds}
+            data={ads}
             renderItem={({ item }) => (
                 <Ad 
                     key={item.id}
@@ -20,6 +14,6 @@ export default function AdList({ searchText }: {
             )}
             keyExtractor={(item) => item.id.toString()}
             contentContainerStyle={{ alignItems: "center" }}
-            />
+        />
     )
 }
