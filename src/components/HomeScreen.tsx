@@ -5,7 +5,7 @@ import AdList from "./AdList";
 import carAdsJson from "../data/car_ads_embedded.json"
 import { CarAd, filterAds } from "../lib/filterAds";
 import { embedQuery } from "../lib/embedQuery";
-import { rankAds } from "../lib/searchAds";
+import { rankAds } from "../lib/rankAds";
 
 type EmbeddedCarAd = CarAd & { embedding: number[] }
 const carAds = carAdsJson as EmbeddedCarAd[]

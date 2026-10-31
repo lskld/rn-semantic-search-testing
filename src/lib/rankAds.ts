@@ -6,7 +6,7 @@ type EmbeddedCarAd = CarAd & { embedding: number[] }
 
 const carAds = carAdsJson as EmbeddedCarAd[]
 
-export function rankAds(queryVector: number[]) {
+export function rankAds(queryVector: number[], ads: EmbeddedCarAd[] = carAds) {
     return [...carAds]
         .map(ad => ({ ad, score: cosineSimilarity(queryVector, ad.embedding) }))
         .sort((a, b) => b.score - a.score)
