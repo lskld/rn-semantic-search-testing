@@ -6,8 +6,12 @@ type EmbeddedCarAd = CarAd & { embedding: number[] }
 export function keywordScore(ad: CarAd, query: string): number {
     const tokens = query.trimEnd().toLowerCase().split(/\s+/)
     if (tokens.length === 0) return 0
-    const adData = `${ad.title} ${ad.make} ${ad.model}`.toLowerCase()
-    const matched = tokens.filter(t => adData.includes(t)).length
+    const words = new Set(
+        `${ad.title} ${ad.make} ${ad.model}`
+            .toLowerCase()
+            .split(/[^a-z0-9]+/)
+    )
+    const matched = tokens.filter(t => words.has(t)).length
     return matched / tokens.length
 }
 
