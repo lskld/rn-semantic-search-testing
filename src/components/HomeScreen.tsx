@@ -29,7 +29,7 @@ export default function HomeScreen() {
     embedQuery(searchText)
       .then(vector => {
         if (!cancelled) {
-          setResults(rankAds(vector).map(r => r.ad))
+          setResults(rankAds(searchText, vector).map(r => r.ad))
         }
       })
       .catch(err => {
